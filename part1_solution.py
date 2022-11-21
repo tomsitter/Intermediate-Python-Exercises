@@ -44,13 +44,7 @@ class ScheduleEvent:
         Compare two events for sorting
         """
         return self.start < other.start
-
-    def overlaps(self, other: ScheduleEvent) -> bool:
-        """
-        Check if two events overlap
-        """
-        return self.start <= other.end and self.end >= other.start
-
+    
 
 # Example data
 example_schedule = [
