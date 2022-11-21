@@ -40,7 +40,7 @@ example_schedule = [
     ScheduleEvent(
         asset_id=1,
         start=datetime.fromisoformat("2020-01-01 09:30:00"),
-        end=datetime.fromisoformat("2020-01-01 10:15:00"),
+        end=datetime.fromisoformat("2020-01-01 09:45:00"),
     ),
     ScheduleEvent(
         asset_id=3,
@@ -65,6 +65,6 @@ example_schedule = [
 
 
 # Exercise 3. Create a list of gaps between events. A gap is defined as a period of time
-#             between two events where no event is scheduled.
+#             between two events where no event is scheduled and is represented by a start and end time.
 #             Use your best judgement to create the returned data structure.
 #             Do not modify the original list.

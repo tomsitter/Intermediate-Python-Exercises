@@ -11,9 +11,9 @@ and then fixed the overlap code.
 
 from __future__ import annotations
 
+import unittest
 from dataclasses import dataclass
 from datetime import datetime
-import unittest
 
 # -------------------
 # Exercise
@@ -54,31 +54,6 @@ class ScheduleEvent:
         Check if two events overlap
         """
         return self.start < other.end and self.end > other.start
-
-
-# Example data
-example_schedule = [
-    ScheduleEvent(
-        asset_id=2,
-        start=datetime.fromisoformat("2020-01-01 10:00:00"),
-        end=datetime.fromisoformat("2020-01-01 10:30:00"),
-    ),
-    ScheduleEvent(
-        asset_id=1,
-        start=datetime.fromisoformat("2020-01-01 09:30:00"),
-        end=datetime.fromisoformat("2020-01-01 10:15:00"),
-    ),
-    ScheduleEvent(
-        asset_id=3,
-        start=datetime.fromisoformat("2020-01-01 10:30:00"),
-        end=datetime.fromisoformat("2020-01-01 11:30:00"),
-    ),
-    ScheduleEvent(
-        asset_id=4,
-        start=datetime.fromisoformat("2020-01-01 11:30:00"),
-        end=datetime.fromisoformat("2020-01-01 11:35:00"),
-    ),
-]
 
 
 def find_overlapping_events(schedule: list[ScheduleEvent]) -> list[ScheduleEvent]:

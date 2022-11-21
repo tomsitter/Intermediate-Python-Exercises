@@ -37,7 +37,7 @@ class ScheduleEvent:
         """
         Return the duration of the event
         """
-        return self.start - self.end
+        return self.end - self.start
 
     def __lt__(self, other: ScheduleEvent) -> bool:
         """
@@ -62,7 +62,7 @@ example_schedule = [
     ScheduleEvent(
         asset_id=1,
         start=datetime.fromisoformat("2020-01-01 09:30:00"),
-        end=datetime.fromisoformat("2020-01-01 09:55:00"),
+        end=datetime.fromisoformat("2020-01-01 09:45:00"),
     ),
     ScheduleEvent(
         asset_id=3,
@@ -93,6 +93,8 @@ def sort_schedule(schedule: list[ScheduleEvent]) -> list[ScheduleEvent]:
 
 sorted_schedule = sort_schedule(example_schedule)
 
+assert [event.asset_id for event in sorted_schedule] == [1, 2, 3, 4]
+
 # Exercise 2. Create a list with only events from example_schedule that have a duration
 #             of less than 15 minutes.
 #             Do not modify the original list.
@@ -113,6 +115,8 @@ def find_events_under_duration(
 events_under_threshold = find_events_under_duration(
     example_schedule, timedelta(minutes=15)
 )
+
+assert len(events_under_threshold) == 1 and events_under_threshold[0].asset_id == 4
 
 # Exercise 3. Create a list of gaps between events. A gap is defined as a period of time
 #             between two events where no event is scheduled.
@@ -145,3 +149,9 @@ def find_gaps(schedule: list[ScheduleEvent]) -> list[ScheduleGap]:
 
 
 schedule_gaps = find_gaps(example_schedule)
+
+assert len(schedule_gaps) == 1
+assert schedule_gaps[0] == ScheduleGap(
+    start=datetime.fromisoformat("2020-01-01 09:45:00"),
+    end=datetime.fromisoformat("2020-01-01 10:00:00"),
+)
