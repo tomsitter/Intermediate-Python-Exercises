@@ -10,15 +10,15 @@ them.
 
 from __future__ import annotations
 
+import unittest
 from dataclasses import dataclass
 from datetime import datetime
-import unittest
 
 # -------------------
 # Exercise
 #
 # A co-worker is trying to find any events that overlap in time.
-# Events with the same start and end as eachother do not overlap.
+# An event that ends at the same time another starts is not considered an overlap.
 # He has provided the following implementation and tests.
 # Read and write any additional tests to determine whether his implementation is correct.
 # If it is not correct, fix it.
@@ -40,7 +40,7 @@ class ScheduleEvent:
         """
         Return the duration of the event
         """
-        return self.start - self.end
+        return self.end - self.start
 
     def __lt__(self, other: ScheduleEvent) -> bool:
         """
@@ -53,31 +53,6 @@ class ScheduleEvent:
         Check if two events overlap
         """
         return self.start <= other.end and self.end >= other.start
-
-
-# Example data
-example_schedule = [
-    ScheduleEvent(
-        asset_id=2,
-        start=datetime.fromisoformat("2020-01-01 10:00:00"),
-        end=datetime.fromisoformat("2020-01-01 10:30:00"),
-    ),
-    ScheduleEvent(
-        asset_id=1,
-        start=datetime.fromisoformat("2020-01-01 09:30:00"),
-        end=datetime.fromisoformat("2020-01-01 10:15:00"),
-    ),
-    ScheduleEvent(
-        asset_id=3,
-        start=datetime.fromisoformat("2020-01-01 10:30:00"),
-        end=datetime.fromisoformat("2020-01-01 11:30:00"),
-    ),
-    ScheduleEvent(
-        asset_id=4,
-        start=datetime.fromisoformat("2020-01-01 11:30:00"),
-        end=datetime.fromisoformat("2020-01-01 11:35:00"),
-    ),
-]
 
 
 def find_overlapping_events(schedule: list[ScheduleEvent]) -> list[ScheduleEvent]:
