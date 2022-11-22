@@ -59,7 +59,7 @@ def find_overlapping_events(schedule: list[ScheduleEvent]) -> list[ScheduleEvent
     """
     Find overlapping events
     :param schedule: list of scheduled events
-    :return: list of overlapping events. Only returns the first overlapping event.
+    :return: list of overlapping events. Only returns the earlier of two overlapping events.
     """
     schedule = sorted(schedule)
     overlapping = []
